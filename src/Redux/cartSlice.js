@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
 
 export const cartSlice = createSlice({
@@ -21,9 +22,12 @@ export const cartSlice = createSlice({
         DecrementQty: (state,action)=>{
             return state.map((item)=>(item.id === action.payload ? {...item, qty: item.qty-1} : item));
         },
-
+        clearCart: (state) => {
+            return [];
+        },
+        
     },
 })
 
-export const {AddItem, RemoveItem, IncrementQty, DecrementQty} = cartSlice.actions;
+export const {AddItem, RemoveItem, IncrementQty, DecrementQty, clearCart} = cartSlice.actions;
 export default cartSlice.reducer

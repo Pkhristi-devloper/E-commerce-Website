@@ -1,15 +1,19 @@
+/* eslint-disable no-unused-vars */
 import Categories from "../utils/Categories";
 import Nav from "../components/Nav";
 import Card from "../components/Card";
 import food_items from "../utils/Data";
+import { clearCart } from '../Redux/cartSlice.js'
+import { toast } from 'react-toastify';
 import { useContext } from "react";
 import { dataContext } from "../Context/UserContext";
 import { RxCross2 } from "react-icons/rx";
 import CartCard from "../components/CartCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import shopping from '../assets/shopping.png';
 const Home = () => {
   let items = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   let subTotal = items.reduce(
     (total, item) => total + item.price * item.qty,
     0,
@@ -24,7 +28,7 @@ const Home = () => {
     }
   }
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full overflow-x-hidden">
       <Nav />
       {!input && (
         <div className="categories w-[100%] flex items-center justify-center md:gap-[2vw] gap-[3.5vw] md:mt-[5vh] mt-[2vh] px-[20px] flex-wrap">
@@ -120,7 +124,10 @@ const Home = () => {
               /-
             </span>
           </div>
-          <button className="w-[70%] bg-green-500 mt-[2vh] mx-auto py-1 font-semibold text-zinc-200 hover:bg-green-600 hover:text-white rounded-lg text-xl cursor-pointer transition-all active:scale-95">
+          <button className="w-[70%] bg-green-500 mt-[2vh] mx-auto py-1 font-semibold text-zinc-200 hover:bg-green-600 hover:text-white rounded-lg text-xl cursor-pointer transition-all active:scale-95" onClick={()=>{
+            dispatch(clearCart());
+            toast.success("Order Placed Successfully!");
+          }}>
             Place Order
           </button>
         </div> : <div className="w-full h-full items-center justify-center flex flex-col gap-[2vh]">

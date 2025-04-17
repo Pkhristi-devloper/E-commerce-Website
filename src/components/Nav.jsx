@@ -15,7 +15,7 @@ const Nav = () => {
       setCat(newList);
   },[input])
   return (
-    <div className="w-full h-[12vh] flex justify-between items-center px-5 py-1">
+    <div className="w-full h-[12vh] flex justify-between items-center px-5 py-1 overflow-x-hidden">
       <div className="logo w-[60px] h-[60px] bg-white flex items-center justify-center rounded-lg cursor-pointer shadow-2xl">
         <IoFastFoodOutline className="text-green-500 h-[30px] w-[30px]" />
       </div>

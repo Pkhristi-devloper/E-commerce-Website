@@ -3,3 +3,6 @@
     width: 0px;
     background: transparent;
   }
+html,body{
+  overflow-x: hidden;
+}
